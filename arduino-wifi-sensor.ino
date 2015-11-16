@@ -119,6 +119,9 @@ void init_lcd() {
  ***************************************************************************/
 bool init_wifi() {
   Serial.println("WiFi setup [START]");
+  if(!wifi.kick()){
+    wifi.restart();
+  }
   if (wifi.joinAP(SSID, PASSWORD)) {
     Serial.print("Join AP success\r\n");
     if (wifi.disableMUX()) {
@@ -215,4 +218,3 @@ void write2lcd(int row, String string) {
   lcd.setCursor(0, row);
   lcd.print(string);
 }
-
